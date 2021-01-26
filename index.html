@@ -49,7 +49,7 @@
         <div class="col-md-4">
           <div class="withdraw">
             <h4>Withdraw</h4>
-            <h1>$000</h1>
+            <h1>$ <span id="currentWithdraw">000</span></h1>
           </div>
         </div>
         <div class="col-md-4">
@@ -88,11 +88,15 @@
               type="number"
               class="form-control"
               name=""
-              id=""
+              id="withdrawAmount"
               placeholder="$ Amount you want to Withdraw..."
             />
             <div class="text-center">
-              <button type="button" class="btn btn-success mt-3 py-2">
+              <button
+                id="addWithdraw"
+                type="button"
+                class="btn btn-success mt-3 py-2"
+              >
                 Withdraw
               </button>
             </div>
@@ -109,23 +113,49 @@
         loginArea.style.display = "none";
         document.getElementById("client-area").style.display = "block";
       });
+
       //Deposit button Handler
       const depositBtn = document.getElementById("addDeposit");
       depositBtn.addEventListener("click", function () {
         let depositAmount = document.getElementById("depositAmount").value;
         depositAmount = parseFloat(depositAmount);
-        const currentDeposit = parseFloat(document.getElementById("currentDeposit").innerText);
+        const currentDeposit = parseFloat(
+          document.getElementById("currentDeposit").innerText
+        );
         const totalDeposit = depositAmount + currentDeposit;
         document.getElementById("currentDeposit").innerText = totalDeposit;
         document.getElementById("depositAmount").value = "";
 
         //Adding deposit to Current Balance
-        const currentBalance = parseFloat(document.getElementById("currentBalance").innerText);
+        const currentBalance = parseFloat(
+          document.getElementById("currentBalance").innerText
+        );
         let totalBalance = depositAmount + currentBalance;
         document.getElementById("currentBalance").innerText = totalBalance;
+      });
 
+      //Withdraw Button Handler
+      const withdrawBtn = document.getElementById("addWithdraw");
+      withdrawBtn.addEventListener("click", function () {
+        let withdrawAmount = parseFloat(
+          document.getElementById("withdrawAmount").value
+        );
+        const currentWithdraw = parseFloat(
+          document.getElementById("currentWithdraw").innerText
+        );
+        const totalWithdraw = withdrawAmount + currentWithdraw;
+        document.getElementById("currentWithdraw").innerText = totalWithdraw;
 
-
+        //Substracting Current withdraw from Balance
+        const currentBalance = parseFloat(
+          document.getElementById("currentBalance").innerText
+        );
+        let totalBalance = currentBalance - totalWithdraw;
+        if(totalBalance>0){
+        document.getElementById("currentBalance").innerText = totalBalance;
+        }else{
+            alert("you can't withdraw more than you total Balance")
+        }
       });
     </script>
     <script
