@@ -1,0 +1,67 @@
+body {
+    padding: 100px;
+}
+.login-form{
+    margin: 50px auto;
+    padding: 50px;
+    width: 45%;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px gray;
+}
+
+.login-form input, input{
+    border-radius: 10px;
+    background-color: snow;
+    width: 100%;
+}
+
+.login-form div{
+    width: 60%;
+}
+.text-center button{
+    width: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+#client-area{
+    display: none;
+}
+
+.withdraw, .deposit, .balance{
+    /* display: grid;
+    justify-items: center;
+    align-content: center; */
+    color: whitesmoke;
+    box-shadow: 7px 7px 10px gray;
+    margin: 0 50px;
+    padding: 20px;
+    border-radius: 15px;
+}
+.update-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.update-area>div{
+    /* display: grid;
+    justify-items: center;
+    align-content: center; */
+    border-radius: 20px;
+    box-shadow: 7px 7px 15px gray;
+    width: 45%;
+    margin: 0 20px;
+    padding: 60px;
+}
+
+.withdraw{
+    background-color: #E91E63;
+}
+.deposit{
+    background-color: #FF5722;
+}
+.balance{
+    background-color: #3F51B5;
+}
+
