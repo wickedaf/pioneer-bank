@@ -124,8 +124,9 @@
       const depositBtn = document.getElementById("addDeposit");
       depositBtn.addEventListener("click", function () {
         let depositAmount = getInputNumber("depositAmount");
-        if(isNaN(depositAmount)){
+        if(isNaN(depositAmount) || depositAmount<0){
           alert("Please add a Value");
+          document.getElementById("depositAmount").value = "";
         }else{
           updateSpanText("currentDeposit", depositAmount);
           document.getElementById("depositAmount").value = "";
@@ -146,18 +147,24 @@
           document.getElementById("currentBalance").innerText
         );
         const totalWithdraw = withdrawAmount + currentWithdraw;
-        if (withdrawAmount <= currentBalance) {
+
+        if(isNaN(withdrawAmount) || withdrawAmount<0){
+          alert("Please add a Value");
+          document.getElementById("withdrawAmount").value = "";
+        } else{
+
+          if (withdrawAmount <= currentBalance) {
           document.getElementById("currentWithdraw").innerText = totalWithdraw;
           currentBalance = currentBalance - withdrawAmount;
           document.getElementById("currentBalance").innerText = currentBalance;
           document.getElementById("withdrawAmount").value = "";
-        } else if(isNaN(withdrawAmount)){
-          alert("Please add a Value");
         }
          else {
           document.getElementById("withdrawAmount").value = "";
           alert("you can't withdraw more than you total Balance");
         }
+        }
+        
       });
 
       function btnStateChange(inputId, buttonId){
