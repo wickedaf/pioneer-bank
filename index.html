@@ -125,7 +125,7 @@
       depositBtn.addEventListener("click", function () {
         let depositAmount = getInputNumber("depositAmount");
         if(isNaN(depositAmount) || depositAmount<0){
-          alert("Please add a Value");
+          alert("Please add a Currect Value");
           document.getElementById("depositAmount").value = "";
         }else{
           updateSpanText("currentDeposit", depositAmount);
@@ -149,7 +149,7 @@
         const totalWithdraw = withdrawAmount + currentWithdraw;
 
         if(isNaN(withdrawAmount) || withdrawAmount<0){
-          alert("Please add a Value");
+          alert("Please add a Currect Value");
           document.getElementById("withdrawAmount").value = "";
         } else{
 
