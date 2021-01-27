@@ -74,7 +74,7 @@
               <button
                 id="addDeposit"
                 type="button"
-                class="btn btn-success mt-3 py-2"
+                class="btn btn-success mt-3 py-2" disabled
               >
                 Deposit
               </button>
@@ -95,7 +95,7 @@
               <button
                 id="addWithdraw"
                 type="button"
-                class="btn btn-success mt-3 py-2"
+                class="btn btn-success mt-3 py-2" disabled
               >
                 Withdraw
               </button>
@@ -106,6 +106,12 @@
     </section>
 
     <script>
+      btnStateChange("withdrawAmount", "addWithdraw");
+      btnStateChange("depositAmount", "addDeposit");
+      const btnControl = document.getElementById("withdrawAmount");
+      btnControl.addEventListener("input", function(){
+        document.getElementById("addWithdraw").removeAttribute("disabled");
+      })
       // Login button event handler
       const loginBtn = document.getElementById("login-btn");
       loginBtn.addEventListener("click", function () {
@@ -118,12 +124,15 @@
       const depositBtn = document.getElementById("addDeposit");
       depositBtn.addEventListener("click", function () {
         let depositAmount = getInputNumber("depositAmount");
+        if(isNaN(depositAmount)){
+          alert("Please add a Value");
+        }else{
+          updateSpanText("currentDeposit", depositAmount);
+          document.getElementById("depositAmount").value = "";
+          //Adding deposit to Current Balance
+          updateSpanText("currentBalance", depositAmount);
+        }
 
-        updateSpanText("currentDeposit", depositAmount);
-        document.getElementById("depositAmount").value = "";
-
-        //Adding deposit to Current Balance
-        updateSpanText("currentBalance", depositAmount);
       });
 
       //Withdraw Button Handler
@@ -142,11 +151,21 @@
           currentBalance = currentBalance - withdrawAmount;
           document.getElementById("currentBalance").innerText = currentBalance;
           document.getElementById("withdrawAmount").value = "";
-        } else {
+        } else if(isNaN(withdrawAmount)){
+          alert("Please add a Value");
+        }
+         else {
           document.getElementById("withdrawAmount").value = "";
           alert("you can't withdraw more than you total Balance");
         }
       });
+
+      function btnStateChange(inputId, buttonId){
+        const btnControl = document.getElementById(inputId);
+      btnControl.addEventListener("input", function(){
+        document.getElementById(buttonId).removeAttribute("disabled");
+      });
+      }
 
       function getInputNumber(id) {
         const amount = document.getElementById(id).value;
