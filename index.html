@@ -143,19 +143,31 @@
         const currentWithdraw = parseFloat(
           document.getElementById("currentWithdraw").innerText
         );
-        const totalWithdraw = withdrawAmount + currentWithdraw;
-        document.getElementById("currentWithdraw").innerText = totalWithdraw;
-
-        //Substracting Current withdraw from Balance
-        const currentBalance = parseFloat(
+        let currentBalance = parseFloat(
           document.getElementById("currentBalance").innerText
-        );
-        let totalBalance = currentBalance - totalWithdraw;
-        if(totalBalance>0){
-        document.getElementById("currentBalance").innerText = totalBalance;
+          );
+          const totalWithdraw = withdrawAmount + currentWithdraw;
+        if(withdrawAmount<=currentBalance){
+
+            document.getElementById("currentWithdraw").innerText = totalWithdraw;
+            currentBalance = currentBalance - withdrawAmount;
+            document.getElementById("currentBalance").innerText = currentBalance;
+            document.getElementById("withdrawAmount").value = "";
         }else{
+            document.getElementById("withdrawAmount").value = "";
             alert("you can't withdraw more than you total Balance")
         }
+
+        //Substracting Current withdraw from Balance
+
+        // let totalBalance = currentBalance - withdrawAmount;
+        // if(totalBalance>0){
+        // document.getElementById("currentBalance").innerText = totalBalance;
+        // document.getElementById("currentBalance").value = "";
+        // }else{
+        //     document.getElementById("currentWithdraw").value = "";
+        //     alert("you can't withdraw more than you total Balance")
+        // }
       });
     </script>
     <script
