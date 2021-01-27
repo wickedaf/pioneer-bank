@@ -124,7 +124,6 @@
 
         //Adding deposit to Current Balance
         updateSpanText("currentBalance", depositAmount);
-        
       });
 
       //Withdraw Button Handler
@@ -136,35 +135,29 @@
         );
         let currentBalance = parseFloat(
           document.getElementById("currentBalance").innerText
-          );
-          const totalWithdraw = withdrawAmount + currentWithdraw;
-        if(withdrawAmount<=currentBalance){
-
-            document.getElementById("currentWithdraw").innerText = totalWithdraw;
-            currentBalance = currentBalance - withdrawAmount;
-            document.getElementById("currentBalance").innerText = currentBalance;
-            document.getElementById("withdrawAmount").value = "";
-        }else{
-            document.getElementById("withdrawAmount").value = "";
-            alert("you can't withdraw more than you total Balance")
+        );
+        const totalWithdraw = withdrawAmount + currentWithdraw;
+        if (withdrawAmount <= currentBalance) {
+          document.getElementById("currentWithdraw").innerText = totalWithdraw;
+          currentBalance = currentBalance - withdrawAmount;
+          document.getElementById("currentBalance").innerText = currentBalance;
+          document.getElementById("withdrawAmount").value = "";
+        } else {
+          document.getElementById("withdrawAmount").value = "";
+          alert("you can't withdraw more than you total Balance");
         }
-        
       });
 
-      function getInputNumber(id){
-          const amount = document.getElementById(id).value;
-          const amountNumber = parseFloat(amount);
-          return amountNumber;
-        }
+      function getInputNumber(id) {
+        const amount = document.getElementById(id).value;
+        const amountNumber = parseFloat(amount);
+        return amountNumber;
+      }
 
-
-      function updateSpanText(id, addedNumber){
-        let currentNumber = parseFloat(
-          document.getElementById(id).innerText
-        );
+      function updateSpanText(id, addedNumber) {
+        let currentNumber = parseFloat(document.getElementById(id).innerText);
         const totalAmount = addedNumber + currentNumber;
         document.getElementById(id).innerText = totalAmount;
-
       }
     </script>
     <script
