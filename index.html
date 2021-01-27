@@ -117,29 +117,20 @@
       //Deposit button Handler
       const depositBtn = document.getElementById("addDeposit");
       depositBtn.addEventListener("click", function () {
-        let depositAmount = document.getElementById("depositAmount").value;
-        depositAmount = parseFloat(depositAmount);
-        const currentDeposit = parseFloat(
-          document.getElementById("currentDeposit").innerText
-        );
-        const totalDeposit = depositAmount + currentDeposit;
-        document.getElementById("currentDeposit").innerText = totalDeposit;
+        let depositAmount = getInputNumber("depositAmount");
+
+        updateSpanText("currentDeposit", depositAmount);
         document.getElementById("depositAmount").value = "";
 
         //Adding deposit to Current Balance
-        const currentBalance = parseFloat(
-          document.getElementById("currentBalance").innerText
-        );
-        let totalBalance = depositAmount + currentBalance;
-        document.getElementById("currentBalance").innerText = totalBalance;
+        updateSpanText("currentBalance", depositAmount);
+        
       });
 
       //Withdraw Button Handler
       const withdrawBtn = document.getElementById("addWithdraw");
       withdrawBtn.addEventListener("click", function () {
-        let withdrawAmount = parseFloat(
-          document.getElementById("withdrawAmount").value
-        );
+        let withdrawAmount = getInputNumber("withdrawAmount");
         const currentWithdraw = parseFloat(
           document.getElementById("currentWithdraw").innerText
         );
@@ -157,18 +148,24 @@
             document.getElementById("withdrawAmount").value = "";
             alert("you can't withdraw more than you total Balance")
         }
-
-        //Substracting Current withdraw from Balance
-
-        // let totalBalance = currentBalance - withdrawAmount;
-        // if(totalBalance>0){
-        // document.getElementById("currentBalance").innerText = totalBalance;
-        // document.getElementById("currentBalance").value = "";
-        // }else{
-        //     document.getElementById("currentWithdraw").value = "";
-        //     alert("you can't withdraw more than you total Balance")
-        // }
+        
       });
+
+      function getInputNumber(id){
+          const amount = document.getElementById(id).value;
+          const amountNumber = parseFloat(amount);
+          return amountNumber;
+        }
+
+
+      function updateSpanText(id, addedNumber){
+        let currentNumber = parseFloat(
+          document.getElementById(id).innerText
+        );
+        const totalAmount = addedNumber + currentNumber;
+        document.getElementById(id).innerText = totalAmount;
+
+      }
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
