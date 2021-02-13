@@ -1,6 +1,9 @@
 body {
     padding: 100px;
 }
+a{
+    text-decoration: none;
+}
 .login-form{
     margin: 50px auto;
     padding: 50px;
